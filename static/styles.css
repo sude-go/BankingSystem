@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Tai+Heritage+Pro&display=swap');
+
+* {
+    font-size: 16px;
+    font-family: 'Tai Heritage Pro', serif;
+    border-radius: 10px;
+    color: #e6e8e9;
+}
+
+body {
+    margin: 0;
+    background: #1b1b1c;
+}
+
+/*header begin */
+header {
+    position: absolute;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    top: 0;
+    left: 0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 100;
+}
+
+/* when the user scrolls down, hide the header. When the user scrolls up, show the header*/
+.scrolled {
+    position: sticky;
+    color: white !important;
+}
+
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    background-color: #1b1b1c;
+    height: 3px;
+    width: 25px;
+    margin: 3px 0;
+}
+
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #1b1b1c;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 6px 15px;
+}
+
+.navigation a:hover,
+.navigation a.active {
+    color: #e6e8e9;
+}
+
+.navigation a span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom: #e6e8e9 solid 3px;
+    border-radius: 0;
+    padding-bottom: 0;
+    z-index: -1;
+    transform: scale(0);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.navigation a:hover span,
+.navigation a.active span {
+    transform: scale(1);
+    opacity: 1;
+}
+
+@media screen and (max-width: 1200px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    .navigation.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 40px;
+        background-color: #e8a09e;
+        width: 40vw;
+        text-align: center;
+    }
+
+    .navigation a {
+        margin: 25px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navigation.active {
+        width: 80vw;
+    }
+}
+
+/*header end*/
+
+.container {
+    width: 100%;
+    height: 500px;
+}
+
+/*home page*/
+#home {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    background: url('/static/main_img.png') no-repeat fixed center;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 3rem;
+    /*padding-top: 10vw;*/
+    color: #e8a09e;
+    margin-left: 100px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#home h1 {
+    font-size: 4rem;
+    padding-top: 10vw;
+    color: #e8a09e;
+    margin-left: 100px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/*home page end*/
+
+/*account page*/
+#accounts {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: url('/static/a_banner.png') no-repeat center;
+    background-size: cover;
+}
+.accountCard {
+    width: 25vw;
+    background-color: #ff725e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px;
+}
+
+.accountCards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/*account page end*/
+
+/*create account page*/
+#create{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: url('/static/ca_banner.png') no-repeat center;
+    background-size: cover;
+}
+
+#create form{
+    position: relative;
+    margin-left: 10vw;
+    font-size: 20px;
+}
+
+#create form input{
+    width: 30vw;
+    height: 5vh;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: #1b1b1c;
+}
+/*create account page end*/
+
+/*transaction page*/
+#transactions {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: url('/static/t_banner.png') no-repeat center;
+    background-size: cover;
+}
+dialog {
+    width: 50%;
+    left: 20vw;
+    background-color: #ff725e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px;
+
+}
+
+/*transaction page end*/
+
+.btn {
+    background-color: #ff725e;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+
+}
+

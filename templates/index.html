@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="utf-8">
+    <title>Bank Accounts</title>
+</head>
+<body>
+<header>
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    <nav class="navigation">
+        <a href="#" class="active">Home<span></span></a>
+        <a href="#accounts">My Accounts<span></span></a>
+        <a href="#create">Create New Account<span></span></a>
+        <a href="#transactions">Transactions<span></span></a>
+    </nav>
+</header>
+
+<div id="home">
+    <h1>Welcome to <br> Bank Accounts</h1>
+</div>
+
+<div id="accounts" class="bankAccounts container">
+    <h1>Bank Accounts</h1>
+    <div class="accountCards">
+        {% for account in accounts %}
+        <div class="accountCard">
+            <h3>{{ account.name }}</h3>
+            <p>Balance: {{ account.balance }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="create" class="container">
+    <h1>Create New Account</h1>
+    <form action="/create_account" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="initial_balance">Initial Balance:</label><br>
+        <input type="number" id="initial_balance" name="initial_balance" required><br>
+        <button class="btn" type="submit">Create Account</button>
+    </form>
+
+</div>
+
+<div id="transactions" class="buttons container">
+    <h1>Transactions</h1>
+    <!--    Transfer Money -->
+    <button class="btn" onclick="openTransferDialog()" id="open_transfer">+</button>
+    <dialog id="transfer-dialog">
+        <h2>Transfer Money</h2>
+        <form id="transfer-form" action="/transfer" method="post">
+            <label for="sender">Sender Account:</label><br>
+            <input type="text" id="sender" name="sender" required><br><br>
+            <label for="recipient">Recipient Account:</label><br>
+            <input type="text" id="recipient" name="recipient" required><br><br>
+            <label for="amount">Amount:</label><br>
+            <input type="number" id="amount" name="amount" required><br>
+            <button class="btn" type="submit">Transfer</button>
+        </form>
+    </dialog>
+    <!--    Transfer Money -->
+
+    <!--    Deposit Money -->
+    <button class="btn" onclick="openDepositDialog()" id="open_deposit">+</button>
+    <dialog id="deposit-dialog">
+        <h2>Deposit Money</h2>
+        <form id="deposit-form" action="/deposit" method="post">
+            <label for="account">Account:</label><br>
+            <input type="text" id="account" name="account" required><br><br>
+            <label for="amount">Amount:</label><br>
+            <input type="number" id="amount" name="amount" required><br>
+            <button class="btn" type="submit">Deposit</button>
+        </form>
+    </dialog>
+    <!--    Deposit Money -->
+
+    <!--    Withdraw Money -->
+    <button class="btn" onclick="openWithdrawDialog()" id="open_withdraw">+</button>
+    <dialog id="withdraw-dialog">
+        <h2>Withdraw Money</h2>
+        <form id="withdraw-form" action="/withdraw" method="post">
+            <label for="account">Account:</label><br>
+            <input type="text" id="account" name="account" required><br><br>
+            <label for="amount">Amount:</label><br>
+            <input type="number" id="amount" name="amount" required><br>
+            <button class="btn" type="submit">Withdraw</button>
+        </form>
+    </dialog>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
