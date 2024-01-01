@@ -140,6 +140,8 @@ header {
 #home {
     position: relative;
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
     height: 100vh;
     background: url('/static/images/main_image.png') no-repeat fixed center;
     background-size: cover;
@@ -147,8 +149,7 @@ header {
 }
 
 #home h1 {
-    font-size: 4rem;
-    padding-top: 20vw;
+    font-size: 5rem;
 }
 
 /*home page end*/
