@@ -1,16 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Tai+Heritage+Pro&display=swap');
 
+/* global styles */
 * {
     font-size: 16px;
     font-family: 'Tai Heritage Pro', serif;
     border-radius: 10px;
-    color: #e6e8e9;
 }
 
 body {
     margin: 0;
     background: #1b1b1c;
 }
+
+.container {
+    width: 100%;
+    height: 500px;
+}
+
+label {
+    font-size: 20px;
+}
+
+input {
+    width: 30vw;
+    height: 5vh;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    color: #1b1b1c;
+}
+
+.btn {
+    width: 10vw;
+    background-color: #E39DE4;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgb(125, 78, 204);
+}
+
+.btn:hover {
+    background-color: #7D4ECCFF;
+}
+
+h1 {
+    color: #1B1B1C;
+    font-size: 3rem;
+    padding-top: 10vw;
+    margin-left: 5vw;
+    text-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+}
+
+/* global styles */
 
 /*header begin */
 header {
@@ -25,12 +68,6 @@ header {
     justify-content: flex-end;
     align-items: center;
     z-index: 100;
-}
-
-/* when the user scrolls down, hide the header. When the user scrolls up, show the header*/
-.scrolled {
-    position: sticky;
-    color: white !important;
 }
 
 
@@ -56,7 +93,8 @@ header {
 .navigation a {
     position: relative;
     font-size: 1.1em;
-    color: #1b1b1c;
+    color: #e395e4;
+    text-shadow: 3px 2px 3px rgb(0 0 0 / 20%);
     font-weight: 600;
     text-decoration: none;
     margin-left: 20px;
@@ -65,7 +103,7 @@ header {
 
 .navigation a:hover,
 .navigation a.active {
-    color: #e6e8e9;
+    color: #7D4ECC;
 }
 
 .navigation a span {
@@ -74,7 +112,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    border-bottom: #e6e8e9 solid 3px;
+    border-bottom: #7D4ECC solid 3px;
     border-radius: 0;
     padding-bottom: 0;
     z-index: -1;
@@ -89,6 +127,191 @@ header {
     opacity: 1;
 }
 
+/* when the user scrolls down, hide the header. When the user scrolls up, show the header*/
+.scrolled {
+    position: sticky;
+}
+
+
+/*header end*/
+
+
+/*home page*/
+#home {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    background: url('/static/images/main_image.png') no-repeat fixed center;
+    background-size: cover;
+    border-radius: 0;
+}
+
+#home h1 {
+    font-size: 4rem;
+    padding-top: 20vw;
+}
+
+/*home page end*/
+
+/*account page*/
+#accounts {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /*background: url('/static/images/new.png') no-repeat center;*/
+    /*background-size: cover;*/
+    background: #1b1b1c;
+}
+
+#accounts h1 {
+    padding-top: 0;
+    color: #E39DE4;
+    text-shadow: #7D4ECC 0 0 10px;
+}
+
+.accountCards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.accountCard {
+    width: 25vw;
+    border: #7D4ECC solid 3px;
+    background: #e39de4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 0 20px 20px 20px;
+    margin: 20px;
+}
+
+.accountCard_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.transactions_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.transactions_bar a {
+    margin: 10px;
+    padding: 10px;
+    background-color: #E39DE4;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.transactions_bar a:hover {
+    background-color: #7D4ECCFF;
+}
+
+/*account page end*/
+
+/*create account page*/
+#create {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: url('/static/images/create_banner.png') no-repeat center;
+    background-size: cover;
+    border-radius: 0;
+}
+
+#create form {
+    position: relative;
+    margin-left: 10vw;
+    font-size: 20px;
+}
+
+
+#error_message {
+    display: none;
+    color: red;
+    font-size: 20px;
+    margin-left: 10vw;
+}
+
+/*create account page end*/
+
+/*transaction page*/
+#transactions {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: url('/static/images/transactions_banner.png') no-repeat center;
+    background-size: cover;
+    border-radius: 0;
+    margin-left: 5vw;
+}
+
+#transactions h1 {
+    margin-left: 5vw;
+    padding-top: 0;
+    color: #E39DE4;
+    text-shadow: #7D4ECC 0 0 10px;
+}
+
+.tab {
+    overflow: hidden;
+    width: fit-content;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: #E39DE4;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 30px;
+    transition: 0.3s;
+    font-size: 17px;
+    border-radius: 0;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #7D4ECC;
+}
+
+/* Create an active/current tab-link class */
+.tab button.selected {
+    background-color: #7D4ECC;
+    border-bottom: #7D4ECC solid 5px;
+}
+
+/* Style the tab content */
+.tab-content {
+    display: none;
+    padding: 6px 12px;
+    color: aliceblue;
+}
+
+/*transaction page end*/
+
+
+/* Extra small devices (phones, 600px and down) */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+
+/* for mobile devices */
 @media screen and (max-width: 1200px) {
     .menu-toggle {
         display: flex;
@@ -114,130 +337,8 @@ header {
 }
 
 @media screen and (max-width: 768px) {
+
     .navigation.active {
         width: 80vw;
     }
 }
-
-/*header end*/
-
-.container {
-    width: 100%;
-    height: 500px;
-}
-
-/*home page*/
-#home {
-    position: relative;
-    display: flex;
-    height: 100vh;
-    background: url('/static/main_img.png') no-repeat fixed center;
-    background-size: cover;
-}
-
-h1 {
-    font-size: 3rem;
-    /*padding-top: 10vw;*/
-    color: #e8a09e;
-    margin-left: 100px;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-#home h1 {
-    font-size: 4rem;
-    padding-top: 10vw;
-    color: #e8a09e;
-    margin-left: 100px;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/*home page end*/
-
-/*account page*/
-#accounts {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background: url('/static/a_banner.png') no-repeat center;
-    background-size: cover;
-}
-.accountCard {
-    width: 25vw;
-    background-color: #ff725e;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin: 20px;
-}
-
-.accountCards{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/*account page end*/
-
-/*create account page*/
-#create{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background: url('/static/ca_banner.png') no-repeat center;
-    background-size: cover;
-}
-
-#create form{
-    position: relative;
-    margin-left: 10vw;
-    font-size: 20px;
-}
-
-#create form input{
-    width: 30vw;
-    height: 5vh;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    color: #1b1b1c;
-}
-/*create account page end*/
-
-/*transaction page*/
-#transactions {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background: url('/static/t_banner.png') no-repeat center;
-    background-size: cover;
-}
-dialog {
-    width: 50%;
-    left: 20vw;
-    background-color: #ff725e;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin: 20px;
-
-}
-
-/*transaction page end*/
-
-.btn {
-    background-color: #ff725e;
-    color: white;
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: column;
-
-}
-

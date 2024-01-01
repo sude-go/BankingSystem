@@ -87,9 +87,16 @@ def index():
 def create_account():
     name = request.form['name']
     initial_balance = float(request.form['initial_balance'])
-    new_account = BankAccount(initial_balance, name)
-    accounts.append(new_account)
-    return redirect('/')
+    # if account name already exists
+    if any(acc.name == name for acc in accounts):
+        print("name already exists")
+        error_message = f'Account with name {name} already exists.'
+        print("error message", error_message)
+        return render_template('index.html', accounts=accounts, error_message=error_message, scroll_to_create=True)
+    else:
+        new_account = BankAccount(initial_balance, name)
+        accounts.append(new_account)
+        return render_template('index.html', accounts=accounts, scroll_to_accounts=True)
 
 
 @app.route('/transfer', methods=['POST'])
@@ -109,7 +116,7 @@ def transfer():
     else:
         return 'Invalid sender or recipient account.'
 
-    return redirect('/')
+    return render_template('index.html', accounts=accounts, scroll_to_accounts=True)
 
 
 @app.route('/deposit', methods=['POST'])
@@ -122,9 +129,9 @@ def deposit():
     if account:
         account.deposit(amount)
     else:
-        return 'Invalid account.'
+        return redirect('/')
 
-    return redirect('/')
+    return render_template('index.html', accounts=accounts, scroll_to_accounts=True)
 
 
 @app.route('/withdraw', methods=['POST'])
@@ -139,7 +146,7 @@ def withdraw():
     else:
         return 'Invalid account.'
 
-    return redirect('/')
+    return render_template('index.html', accounts=accounts, scroll_to_accounts=True)
 
 
 if __name__ == '__main__':

@@ -3,7 +3,8 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <meta charset="utf-8">
-    <title>Bank Accounts</title>
+    <title>New Bank</title>
+    <link rel="icon" type="image/png" href="/static/fav-ico.png">
 </head>
 <body>
 <header>
@@ -21,18 +22,50 @@
 </header>
 
 <div id="home">
-    <h1>Welcome to <br> Bank Accounts</h1>
+    <h1>New Bank </h1>
+    <h2 style="font-size: 4rem; margin-bottom: 5px">'23</h2>
 </div>
 
-<div id="accounts" class="bankAccounts container">
-    <h1>Bank Accounts</h1>
+<div id="accounts" class="container">
+    <h1>My Accounts</h1>
     <div class="accountCards">
+        {% if accounts %}
         {% for account in accounts %}
         <div class="accountCard">
-            <h3>{{ account.name }}</h3>
+            <section class="accountCard_header">
+                <h3>{{ account.name }}</h3>
+                <h3>···</h3>
+            </section>
             <p>Balance: {{ account.balance }}</p>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="accountCard">
+            <section class="accountCard_header">
+                <h3>Default Account</h3>
+                <h3>···</h3>
+            </section>
+            <p>Balance: $0.00</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="transactions_bar">
+        <a href="#transactions" onclick="showForm(event, 'transfer')">
+            <img width="32" height="32"
+                 src="https://img.icons8.com/external-itim2101-lineal-itim2101/64/external-money-transfer-finance-itim2101-lineal-itim2101-1.png"
+                 alt="external-money-transfer-finance-itim2101-lineal-itim2101-1"/>
+        </a>
+        <a href="#transactions" onclick="showForm(event, 'deposit')">
+
+            <img width="32" height="32"
+                 src="https://img.icons8.com/laces/64/1b1b1c/initiate-money-transfer.png"
+                 alt="initiate-money-transfer"/>
+        </a>
+        <a href="#transactions" onclick="showForm(event, 'withdraw')">
+            <img width="32" height="32"
+                 src="https://img.icons8.com/external-outline-design-circle/66/000000/external-atm-hotel-and-services-outline-design-circle.png"
+                 alt="external-atm-hotel-and-services-outline-design-circle"/>
+        </a>
     </div>
 </div>
 
@@ -40,59 +73,68 @@
     <h1>Create New Account</h1>
     <form action="/create_account" method="post">
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+        <p id="error_message"> Account with name {name} already exists.</p>
+        <input type="text" id="name" name="name" placeholder="Account Name" required><br><br>
         <label for="initial_balance">Initial Balance:</label><br>
-        <input type="number" id="initial_balance" name="initial_balance" required><br>
+        <input type="number" min="0.00" max="10000.00" id="initial_balance" name="initial_balance" placeholder="$0.00"
+               required><br>
         <button class="btn" type="submit">Create Account</button>
     </form>
 
 </div>
 
-<div id="transactions" class="buttons container">
+<div id="transactions">
     <h1>Transactions</h1>
-    <!--    Transfer Money -->
-    <button class="btn" onclick="openTransferDialog()" id="open_transfer">+</button>
-    <dialog id="transfer-dialog">
-        <h2>Transfer Money</h2>
-        <form id="transfer-form" action="/transfer" method="post">
-            <label for="sender">Sender Account:</label><br>
-            <input type="text" id="sender" name="sender" required><br><br>
-            <label for="recipient">Recipient Account:</label><br>
-            <input type="text" id="recipient" name="recipient" required><br><br>
-            <label for="amount">Amount:</label><br>
-            <input type="number" id="amount" name="amount" required><br>
+    <div class="tab">
+        <button class="tab-links selected" onclick="showForm(event, 'transfer')">Transfer Money</button>
+        <button class="tab-links" onclick="showForm(event, 'deposit')">Deposit</button>
+        <button class="tab-links" onclick="showForm(event, 'withdraw')">Withdraw</button>
+    </div>
+
+    <div id="transfer" class="tab-content">
+        <form id="transfer-form" class="transaction-form" action="/transfer" method="post">
+            <label for="sender">Sender Account</label><br>
+            <input type="text" id="sender" name="sender" placeholder="Sender Account" required><br><br>
+            <label for="recipient">Recipient Account</label><br>
+            <input type="text" id="recipient" name="recipient" placeholder="Recipient Account" required><br><br>
+            <label for="amount">Amount</label><br>
+            <input type="number" min="0.00" max="10000.00" id="transfer-amount" name="amount" placeholder="Amount"
+                   required><br>
             <button class="btn" type="submit">Transfer</button>
         </form>
-    </dialog>
-    <!--    Transfer Money -->
-
-    <!--    Deposit Money -->
-    <button class="btn" onclick="openDepositDialog()" id="open_deposit">+</button>
-    <dialog id="deposit-dialog">
-        <h2>Deposit Money</h2>
-        <form id="deposit-form" action="/deposit" method="post">
-            <label for="account">Account:</label><br>
+    </div>
+    <div id="deposit" class="tab-content">
+        <form id="deposit-form" class="transaction-form" action="/deposit" method="post">
+            <label for="account">Account</label><br>
             <input type="text" id="account" name="account" required><br><br>
-            <label for="amount">Amount:</label><br>
-            <input type="number" id="amount" name="amount" required><br>
+            <label for="amount">Amount</label><br>
+            <input type="number" min="0.00" max="10000.00" id="amount" name="amount" required><br>
             <button class="btn" type="submit">Deposit</button>
         </form>
-    </dialog>
-    <!--    Deposit Money -->
-
-    <!--    Withdraw Money -->
-    <button class="btn" onclick="openWithdrawDialog()" id="open_withdraw">+</button>
-    <dialog id="withdraw-dialog">
-        <h2>Withdraw Money</h2>
-        <form id="withdraw-form" action="/withdraw" method="post">
-            <label for="account">Account:</label><br>
+    </div>
+    <div id="withdraw" class="tab-content">
+        <form id="withdraw-form" class="transaction-form" action="/withdraw" method="post">
+            <label for="account">Account</label><br>
             <input type="text" id="account" name="account" required><br><br>
-            <label for="amount">Amount:</label><br>
+            <label for="amount">Amount</label><br>
             <input type="number" id="amount" name="amount" required><br>
             <button class="btn" type="submit">Withdraw</button>
         </form>
-    </dialog>
+    </div>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% if scroll_to_accounts %}
+<script>
+    window.location.href = '/#accounts';
+</script>
+{% endif %}
+{% if scroll_to_create %}
+<script>
+    window.location.href = '/#create';
+    console.log("error: {{ error_message }}");
+    var error = document.getElementById("error_message");
+    error.style.display = "flex !important";
+</script>
+{% endif %}
 </body>
 </html>
