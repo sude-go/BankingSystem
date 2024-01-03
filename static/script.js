@@ -57,18 +57,40 @@ document.addEventListener('scroll', function () {
     }
 });
 
-function showForm(evt, transactionType) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+const tabs = document.querySelector(".tabs");
+const btns = document.querySelectorAll(".button");
+const articles = document.querySelectorAll(".content");
+tabs.addEventListener("click", function (e) {
+    const id = e.target.dataset.id;
+    if (id) {
+        btns.forEach(function (btn) {
+            btn.classList.remove("live");
+        });
+        e.target.classList.add("live");
+        articles.forEach(function (article) {
+            article.classList.remove("live");
+        });
+        const element = document.getElementById(id);
+        element.classList.add("live");
     }
+});
 
-    tablinks = document.getElementsByClassName("tab-links");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" selected", "");
+const icons = document.querySelector(".transactions_bar");
+icons.addEventListener("click", function (e) {
+    const id = e.target.dataset.id;
+    if (id) {
+        btns.forEach(function (btn) {
+            btn.classList.remove("live");
+        });
+        const btn = document.querySelector(`.button[data-id="${id}"]`);
+        btn.classList.add("live");
+        articles.forEach(function (article) {
+            article.classList.remove("live");
+        });
+        const element = document.getElementById(id);
+        element.classList.add("live");
     }
+});
 
-    document.getElementById(transactionType).style.display = "block";
-    evt.currentTarget.className += " selected";
-}
+
+

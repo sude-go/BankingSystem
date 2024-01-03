@@ -264,41 +264,64 @@ header {
     text-shadow: #7D4ECC 0 0 10px;
 }
 
-.tab {
-    overflow: hidden;
-    width: fit-content;
+.tabs {
+    width: 50vw;
+    border-radius: 0.5rem;
+    background-color: #7D4ECC;
 }
 
-/* Style the buttons inside the tab */
-.tab button {
-    background-color: #E39DE4;
-    float: left;
+.btn-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.button:nth-child(1) {
+    border-top-left-radius: 0.5rem;
+}
+
+.button:nth-child(3) {
+    border-top-right-radius: 0.5rem;
+}
+
+.button {
+    padding: 1rem 0;
     border: none;
-    outline: none;
+    font-size: 1rem;
+    background: #E39DE4;
     cursor: pointer;
-    padding: 14px 30px;
-    transition: 0.3s;
-    font-size: 17px;
+    transition: all 0.3s linear;
+    letter-spacing: 0.25rem;
     border-radius: 0;
 }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-    background-color: #7D4ECC;
+.button:hover:not(.live) {
+    background: #e93b81;
+    color: white;
 }
 
-/* Create an active/current tab-link class */
-.tab button.selected {
-    background-color: #7D4ECC;
-    border-bottom: #7D4ECC solid 5px;
+.tabs-content {
+    padding: 2rem 1.5rem;
 }
 
-/* Style the tab content */
-.tab-content {
+/* hide content */
+.content {
     display: none;
-    padding: 6px 12px;
-    color: aliceblue;
 }
+
+.content .btn {
+    box-shadow: 0 0 10px rgb(227, 157, 228);
+    transition: all 0.3s ease-in-out;
+
+}
+
+.button.live {
+    background: #7D4ECC;
+}
+
+.content.live {
+    display: block;
+}
+
 
 /*transaction page end*/
 
@@ -310,6 +333,17 @@ header {
 /* Medium devices (landscape tablets, 768px and up) */
 
 /* Large devices (laptops/desktops, 992px and up) */
+@media (min-width: 992px) {
+    .image {
+        margin-bottom: 0;
+    }
+
+    .section-center {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+    }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 

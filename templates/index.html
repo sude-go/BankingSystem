@@ -49,21 +49,21 @@
         {% endif %}
     </div>
     <div class="transactions_bar">
-        <a href="#transactions" onclick="showForm(event, 'transfer')">
+        <a href="#transfer" data-id="transfer">
             <img width="32" height="32"
                  src="https://img.icons8.com/external-itim2101-lineal-itim2101/64/external-money-transfer-finance-itim2101-lineal-itim2101-1.png"
                  alt="external-money-transfer-finance-itim2101-lineal-itim2101-1"/>
             <span>Transfer Money</span>
         </a>
 
-        <a href="#transactions" onclick="showForm(event, 'deposit')">
+        <a href="#deposit" data-id="deposit">
             <img width="32" height="32"
                  src="https://img.icons8.com/laces/64/1b1b1c/initiate-money-transfer.png"
                  alt="initiate-money-transfer"/>
             <span>Deposit Money</span>
         </a>
 
-        <a href="#transactions" onclick="showForm(event, 'withdraw')">
+        <a href="#withdraw" data-id="withdraw">
             <img width="32" height="32"
                  src="https://img.icons8.com/external-outline-design-circle/66/000000/external-atm-hotel-and-services-outline-design-circle.png"
                  alt="external-atm-hotel-and-services-outline-design-circle"/>
@@ -88,41 +88,48 @@
 
 <div id="transactions">
     <h1>Transactions</h1>
-    <div class="tab">
-        <button class="tab-links selected" onclick="showForm(event, 'transfer')">Transfer Money</button>
-        <button class="tab-links" onclick="showForm(event, 'deposit')">Deposit</button>
-        <button class="tab-links" onclick="showForm(event, 'withdraw')">Withdraw</button>
-    </div>
+    <div class="tabs">
+        <div class="btn-container">
+            <button class="button live" data-id="transfer">Transfer</button>
+            <button class="button" data-id="deposit">Deposit</button>
+            <button class="button" data-id="withdraw">Withdraw</button>
+        </div>
+        <div class="tabs-content">
 
-    <div id="transfer" class="tab-content">
-        <form id="transfer-form" class="transaction-form" action="/transfer" method="post">
-            <label for="sender">Sender Account</label><br>
-            <input type="text" id="sender" name="sender" placeholder="Sender Account" required><br><br>
-            <label for="recipient">Recipient Account</label><br>
-            <input type="text" id="recipient" name="recipient" placeholder="Recipient Account" required><br><br>
-            <label for="amount">Amount</label><br>
-            <input type="number" min="0.00" max="10000.00" id="transfer-amount" name="amount" placeholder="Amount"
-                   required><br>
-            <button class="btn" type="submit">Transfer</button>
-        </form>
-    </div>
-    <div id="deposit" class="tab-content">
-        <form id="deposit-form" class="transaction-form" action="/deposit" method="post">
-            <label for="account">Account</label><br>
-            <input type="text" id="account" name="account" required><br><br>
-            <label for="amount">Amount</label><br>
-            <input type="number" min="0.00" max="10000.00" id="amount" name="amount" required><br>
-            <button class="btn" type="submit">Deposit</button>
-        </form>
-    </div>
-    <div id="withdraw" class="tab-content">
-        <form id="withdraw-form" class="transaction-form" action="/withdraw" method="post">
-            <label for="account">Account</label><br>
-            <input type="text" id="account" name="account" required><br><br>
-            <label for="amount">Amount</label><br>
-            <input type="number" id="amount" name="amount" required><br>
-            <button class="btn" type="submit">Withdraw</button>
-        </form>
+            <div class="content live" id="transfer">
+                <form id="transfer-form" class="transaction-form" action="/transfer" method="post">
+                    <label for="sender">Sender Account</label><br>
+                    <input type="text" id="sender" name="sender" placeholder="Sender Account" required><br><br>
+                    <label for="recipient">Recipient Account</label><br>
+                    <input type="text" id="recipient" name="recipient" placeholder="Recipient Account" required><br><br>
+                    <label for="amount">Amount</label><br>
+                    <input type="number" min="0.00" max="10000.00" id="transfer-amount" name="amount"
+                           placeholder="Amount"
+                           required><br>
+                    <button class="btn" type="submit">Transfer</button>
+                </form>
+            </div>
+
+            <div class="content" id="deposit">
+                <form id="deposit-form" class="transaction-form" action="/deposit" method="post">
+                    <label for="account">Account</label><br>
+                    <input type="text" id="account" name="account" required><br><br>
+                    <label for="amount">Amount</label><br>
+                    <input type="number" min="0.00" max="10000.00" id="amount" name="amount" required><br>
+                    <button class="btn" type="submit">Deposit</button>
+                </form>
+            </div>
+
+            <div class="content" id="withdraw">
+                <form id="withdraw-form" class="transaction-form" action="/withdraw" method="post">
+                    <label for="account">Account</label><br>
+                    <input type="text" id="account" name="account" required><br><br>
+                    <label for="amount">Amount</label><br>
+                    <input type="number" id="amount" name="amount" required><br>
+                    <button class="btn" type="submit">Withdraw</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
