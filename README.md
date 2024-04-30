@@ -1,3 +1,3 @@
-# BankingSystem
+# Banking System
 
-[!Link][https://sude-go.github.io/BankingSystem/]
+A basic banking system
